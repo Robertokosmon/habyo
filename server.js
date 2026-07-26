@@ -30,13 +30,22 @@ app.get('/health', (req, res) => {
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use(express.static(__dirname));
 
+// CARREGADOR DE ROTAS COM SUPORTE A SUBPASTAS OU RAIZ
+const loadRoute = (routeName) => {
+  try {
+    return require('./routes/' + routeName);
+  } catch (err) {
+    return require('./' + routeName);
+  }
+};
+
 // ROTAS DA REST API HABYO
-app.use('/api/v1/auth', require('./routes/auth'));
-app.use('/api/v1/leads', require('./routes/leads'));
-app.use('/api/v1/properties', require('./routes/properties'));
-app.use('/api/v1/payments', require('./routes/payments'));
-app.use('/api/v1/superadmin', require('./routes/superadmin'));
-app.use('/api/v1/feedback', require('./routes/feedback'));
+app.use('/api/v1/auth', loadRoute('auth'));
+app.use('/api/v1/leads', loadRoute('leads'));
+app.use('/api/v1/properties', loadRoute('properties'));
+app.use('/api/v1/payments', loadRoute('payments'));
+app.use('/api/v1/superadmin', loadRoute('superadmin'));
+app.use('/api/v1/feedback', loadRoute('feedback'));
 
 // ROTA DA PÁGINA INICIAL INSTITUCIONAL (HABYO HOMEPAGE HABYO.COM.BR)
 app.get('/', (req, res) => {
