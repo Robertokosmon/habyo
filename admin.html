@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Administrativo do Corretor | HABYO</title>
+  <meta name="description" content="Painel de controle interno para o Fundador Proprietário Roberto Corrêa de Mello Junior.">
+  
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- TOP ADMIN NAVBAR -->
+  <header class="admin-navbar">
+    <div class="admin-nav-left">
+      <a href="/index.html" class="brand-logo">HABYO <span class="admin-tag" style="background: #F59E0B; color: #000; font-weight: 800;">FUNDADOR</span></a>
+      <div class="admin-creci-pill" style="border-color: rgba(245, 158, 11, 0.4); color: #FBBF24; background: rgba(245, 158, 11, 0.1);">
+        👑 Página Oficial: <a href="/319413/apartamento-vila-mariana" target="_blank" style="color: #FCD34D;"><strong>habyo.com.br/319413</strong></a>
+      </div>
+    </div>
+
+    <div class="admin-nav-right">
+      <div class="status-trial-badge" style="background: rgba(245, 158, 11, 0.2); color: #FBBF24; border-color: rgba(245, 158, 11, 0.4);">👑 Fundador VIP (Vitalício)</div>
+      
+      <div class="admin-user-profile">
+        <img src="/assets/consultant.jpg" alt="Roberto Corrêa de Mello Junior" class="admin-user-avatar" style="border-color: #F59E0B;">
+        <div>
+          <div class="admin-user-name">Roberto Corrêa de Mello Junior</div>
+          <div class="admin-user-creci" style="color: #FBBF24;">CRECI 319413 &bull; Fundador Proprietário</div>
+        </div>
+      </div>
+
+      <!-- BOTÃO DE LOGOUT / SAIR -->
+      <button class="btn-logout-top" id="logoutBtn">🔒 Sair</button>
+    </div>
+  </header>
+
+  <div class="admin-layout">
+    <!-- SIDEBAR NAV -->
+    <aside class="admin-sidebar">
+      <nav class="sidebar-menu">
+        <button class="nav-item active" data-tab="tab-dashboard">
+          <span class="nav-icon">📊</span>
+          Visão Geral
+        </button>
+        <button class="nav-item" data-tab="tab-new-property">
+          <span class="nav-icon">➕</span>
+          Cadastrar Novo Imóvel
+        </button>
+        <button class="nav-item" data-tab="tab-my-properties">
+          <span class="nav-icon">🏠</span>
+          Meus Imóveis (12)
+        </button>
+        <button class="nav-item" data-tab="tab-leads">
+          <span class="nav-icon">💬</span>
+          Leads do WhatsApp <span class="sidebar-badge-count" id="sidebarLeadCounter">142</span>
+        </button>
+        <button class="nav-item" data-tab="tab-profile">
+          <span class="nav-icon">👤</span>
+          Perfil & CRECI
+        </button>
+        <button class="nav-item" data-tab="tab-billing">
+          <span class="nav-icon">👑</span>
+          Conta Fundador
+        </button>
+      </nav>
+
+      <div class="sidebar-footer-card" style="border-color: rgba(245, 158, 11, 0.3);">
+        <div class="s-card-title" style="color: #FBBF24;">👑 Plano Fundador VIP</div>
+        <div class="s-card-sub" style="color: #10B981;">Gratuito Vitalício • Imóveis Ilimitados</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 100%; background: #F59E0B;"></div></div>
+        <button class="btn-sidebar-upgrade" id="sidebarBillingTrigger" style="background: rgba(245, 158, 11, 0.2); border-color: rgba(245, 158, 11, 0.4); color: #FCD34D;">Ver Detalhes do Fundador</button>
+      </div>
+    </aside>
+
+    <!-- MAIN ADMIN CONTENT AREA -->
+    <main class="admin-main">
+
+      <!-- BANNER DE DESTAQUE: 7 DIAS GRÁTIS (PERFIL + 3 LPs) & UPGRADE MERCADO PAGO -->
+      <div class="trial-header-banner" id="trialHeaderBanner" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(37, 99, 235, 0.15) 100%); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 12px; padding: 16px 24px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div style="font-size: 1.8rem;">🎁</div>
+          <div>
+            <strong style="color: #FBBF24; font-size: 0.95rem; display: block;">Degustação Grátis de 7 Dias: Perfil Profissional + 3 LPs Liberadas!</strong>
+            <span style="font-size: 0.82rem; color: #94A3B8;">Após os 7 dias, insira os dados no Mercado Pago para cadastrar mais imóveis e manter suas Landing Pages no ar.</span>
+          </div>
+        </div>
+        <a href="/register" class="btn-upgrade-trial" style="background: #F59E0B; color: #000; font-weight: 800; text-decoration: none; padding: 10px 18px; border-radius: 8px; font-size: 0.82rem; white-space: nowrap;">
+          💳 Assinar Plano & Manter LPs Ativas &rarr;
+        </a>
+      </div>
+
+      <!-- TAB 1: VISÃO GERAL / DASHBOARD -->
+      <section class="admin-tab-content active" id="tab-dashboard">
+        <div class="tab-header-box">
+          <h1 class="tab-page-title">Painel do Fundador Proprietário 👑</h1>
+          <p class="tab-page-desc">Bem-vindo, Roberto! Acompanhe em tempo real a performance dos seus imóveis e todos os contatos gerados no WhatsApp.</p>
+        </div>
+
+        <!-- STAT CARDS GRID DO MÓDULO DE LEADS -->
+        <div class="admin-stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon-wrap icon-green">💬</div>
+            <div>
+              <div class="stat-number" id="dashTotalLeads">142</div>
+              <div class="stat-label">Total de Leads Recebidos</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon-wrap icon-blue">📅</div>
+            <div>
+              <div class="stat-number" id="dashLeadsToday">18</div>
+              <div class="stat-label">Leads Hoje</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon-wrap icon-purple">📈</div>
+            <div>
+              <div class="stat-number" id="dashLeadsWeek">64</div>
+              <div class="stat-label">Leads Esta Semana</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon-wrap icon-gold">🏆</div>
+            <div>
+              <div class="stat-number" id="dashLeadsMonth">142</div>
+              <div class="stat-label">Leads Este Mês</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RECENT LEADS & TOP PERFORMANCE GRID -->
+        <div class="grid-two-col">
+          
+          <!-- CARD DO ÚLTIMO LEAD RECEBIDO -->
+          <div class="card-box">
+            <div class="card-box-header">
+              <h2 class="card-title">Último Lead Recebido ⚡️</h2>
+              <button class="btn-link-sm" data-tab-link="tab-leads">Ver todos os Leads &rarr;</button>
+            </div>
+            
+            <div class="latest-lead-showcase" id="latestLeadBox">
+              <div class="l-lead-top">
+                <div class="l-lead-avatar">CM</div>
+                <div>
+                  <div class="l-lead-name" id="latestLeadName">Carlos Eduardo Mendes</div>
+                  <div class="l-lead-phone" id="latestLeadPhone">(11) 98421-9988</div>
+                </div>
+                <span class="badge-status-novo" id="latestLeadStatus">Novo</span>
+              </div>
+
+              <div class="l-lead-details">
+                <div><strong>Imóvel:</strong> <span id="latestLeadProp">Apartamento Alto Padrão Vila Mariana (VM1427)</span></div>
+                <div><strong>Data & Hora:</strong> <span id="latestLeadDateTime">Hoje às 14:32</span></div>
+                <div><strong>Origem do Acesso:</strong> <span id="latestLeadSource">Landing Page Direta</span></div>
+              </div>
+
+              <div class="l-lead-actions">
+                <a href="https://wa.me/5519997603139" target="_blank" class="btn-lead-wa flex-1" id="latestLeadWaLink">💬 Falar com Cliente no WhatsApp</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD DE IMÓVEL DE MAIOR DESTAQUE -->
+          <div class="card-box">
+            <h2 class="card-title">Imóvel com Maior Número de Leads 🥇</h2>
+            
+            <div class="top-prop-card">
+              <img src="/assets/hero.jpg" alt="Apto Vila Mariana" class="top-prop-thumb">
+              <div class="top-prop-info">
+                <div class="top-prop-title">Apartamento Alto Padrão Vila Mariana</div>
+                <div class="top-prop-code">Código: VM1427 &bull; R$ 1.850.000</div>
+                <div class="top-prop-count"><strong>48 Leads Gerados</strong> (33.8% do total)</div>
+                <a href="/319413/apartamento-vila-mariana" target="_blank" class="top-prop-link">Ver Landing Page Exclusiva &rarr;</a>
+              </div>
+            </div>
+
+            <div class="quick-actions-stack" style="margin-top: 16px;">
+              <button class="btn-quick-action action-primary" data-tab-link="tab-new-property">
+                <span class="action-icon">➕</span>
+                <div>
+                  <div class="action-title">Cadastrar Novo Imóvel</div>
+                  <div class="action-desc">Crie uma nova Landing Page sob seu CRECI 319413</div>
+                </div>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TAB 2: FORMULÁRIO DE CADASTRO DE NOVO IMÓVEL -->
+      <section class="admin-tab-content" id="tab-new-property">
+        <div class="tab-header-box">
+          <h1 class="tab-page-title">Cadastrar Novo Imóvel (Fundador)</h1>
+          <p class="tab-page-desc">Preencha as informações para gerar uma Landing Page exclusiva sob o seu CRECI 319413 (habyo.com.br/319413/nome-do-imovel).</p>
+        </div>
+
+        <form id="newPropertyForm" class="property-form-box">
+          
+          <!-- STEP 1: INFORMAÇÕES BÁSICAS -->
+          <div class="form-section-card">
+            <h3 class="form-section-title">1. Informações Básicas do Imóvel</h3>
+            
+            <div class="form-grid-2">
+              <div class="form-group col-span-2">
+                <label class="form-label" for="propTitle">Título do Anúncio *</label>
+                <input type="text" id="propTitle" class="form-input" placeholder="Ex: Apartamento Alto Padrão na Vila Mariana com Vista Livre" required>
+                <span class="form-help">O link permanente (slug) será gerado automaticamente: habyo.com.br/319413/apartamento-alto-padrao-vila-mariana</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="propType">Tipo de Imóvel *</label>
+                <select id="propType" class="form-input" required>
+                  <option value="Apartamento">Apartamento</option>
+                  <option value="Casa de Condomínio">Casa de Condomínio</option>
+                  <option value="Cobertura">Cobertura</option>
+                  <option value="Penthouse">Penthouse</option>
+                  <option value="Duplex / Triplex">Duplex / Triplex</option>
+                  <option value="Terreno">Terreno</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="propPurpose">Finalidade *</label>
+                <select id="propPurpose" class="form-input" required>
+                  <option value="Venda">Venda</option>
+                  <option value="Aluguel">Aluguel</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="propPrice">Preço de Venda (R$) *</label>
+                <input type="text" id="propPrice" class="form-input" placeholder="Ex: 1.850.000" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="propCondo">Valor do Condomínio (R$/mês)</label>
+                <input type="text" id="propCondo" class="form-input" placeholder="Ex: 1.250">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="propIptu">Valor do IPTU (R$/mês)</label>
+                <input type="text" id="propIptu" class="form-input" placeholder="Ex: 420">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="propCode">Código Interno</label>
+                <input type="text" id="propCode" class="form-input" placeholder="Ex: VM1427">
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 2: LOCALIZAÇÃO -->
+          <div class="form-section-card">
+            <h3 class="form-section-title">2. Localização</h3>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="propCep">CEP</label>
+                <input type="text" id="propCep" class="form-input" placeholder="04010-200">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="propCity">Cidade / Estado *</label>
+                <input type="text" id="propCity" class="form-input" placeholder="São Paulo - SP" value="São Paulo - SP" required>
+              </div>
+
+              <div class="form-group col-span-2">
+                <label class="form-label" for="propAddress">Endereço Completo *</label>
+                <input type="text" id="propAddress" class="form-input" placeholder="Rua Domingos de Morais, 1427 - Vila Mariana" required>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3: ESPECIFICAÇÕES TÉCNICAS E EMOJIS -->
+          <div class="form-section-card">
+            <h3 class="form-section-title">3. Especificações Técnicas e Diferenciais</h3>
+            <div class="form-grid-4">
+              <div class="form-group">
+                <label class="form-label">📐 Área útil (m²)</label>
+                <input type="number" class="form-input" placeholder="145" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">🛏 Quartos / Suítes</label>
+                <input type="number" class="form-input" placeholder="3" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">🚿 Banheiros</label>
+                <input type="number" class="form-input" placeholder="4" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">🚗 Vagas de Garagem</label>
+                <input type="number" class="form-input" placeholder="2" required>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 16px;">
+              <label class="form-label">Diferenciais do Imóvel (Marque os que se aplicam)</label>
+              <div class="checkbox-options-grid">
+                <label class="checkbox-item"><input type="checkbox" checked> 🏢 Varanda gourmet integrada</label>
+                <label class="checkbox-item"><input type="checkbox" checked> 🏙 Vista livre e permanente</label>
+                <label class="checkbox-item"><input type="checkbox" checked> ❄️ Ar-condicionado</label>
+                <label class="checkbox-item"><input type="checkbox" checked> 🚪 Móveis planejados</label>
+                <label class="checkbox-item"><input type="checkbox" checked> 🪵 Piso em madeira</label>
+                <label class="checkbox-item"><input type="checkbox" checked> 🔒 Fechadura digital</label>
+                <label class="checkbox-item"><input type="checkbox" checked> 🏊 Lazer completo</label>
+                <label class="checkbox-item"><input type="checkbox" checked> ⚡️ Gerador de energia</label>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 16px;">
+              <label class="form-label" for="propDescription">Descrição Detalhada do Imóvel</label>
+              <textarea id="propDescription" class="form-textarea" rows="4" placeholder="Descreva os pontos fortes do imóvel..."></textarea>
+            </div>
+          </div>
+
+          <!-- STEP 4: GALERIA DE FOTOS (ANTI-CÓPIA AUTOMÁTICA) -->
+          <div class="form-section-card">
+            <h3 class="form-section-title">4. Galeria de Fotos e Vídeo (Proteção Anti-cópia Automática)</h3>
+            
+            <div class="upload-dropzone">
+              <div class="dropzone-icon">📷</div>
+              <div class="dropzone-text">Arraste e solte fotos em alta resolução aqui</div>
+              <div class="dropzone-sub">ou clique para selecionar do seu computador (Suporta JPG, PNG, WEBP)</div>
+              <input type="file" multiple class="file-input-hidden">
+            </div>
+
+            <div class="form-group" style="margin-top: 16px;">
+              <label class="form-label" for="propVideo">Link do Vídeo no YouTube (Opcional)</label>
+              <input type="url" id="propVideo" class="form-input" placeholder="https://www.youtube.com/watch?v=...">
+            </div>
+          </div>
+
+          <!-- SUBMIT BUTTONS -->
+          <div class="form-actions-bar">
+            <button type="button" class="btn-form-sec">💾 Salvar Rascunho</button>
+            <button type="submit" class="btn-form-primary">🚀 Publicar na Minha Página Oficial</button>
+          </div>
+
+        </form>
+      </section>
+
+      <!-- TAB 3: MEUS IMÓVEIS -->
+      <section class="admin-tab-content" id="tab-my-properties">
+        <div class="tab-header-box">
+          <h1 class="tab-page-title">Meus Imóveis Publicados (12)</h1>
+          <p class="tab-page-desc">Gerencie suas Landing Pages oficiais. 100% dos contatos gerados vão direto para o seu WhatsApp (19) 99760-3139.</p>
+        </div>
+
+        <div class="properties-table-card">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Imóvel</th>
+                <th>Preço</th>
+                <th>Status</th>
+                <th>Leads WhatsApp</th>
+                <th>URL Pública CRECI 319413</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="tbl-prop-info">
+                    <img src="/assets/hero.jpg" alt="Apto Vila Mariana" class="tbl-thumb">
+                    <div>
+                      <div class="tbl-prop-title">Apartamento Alto Padrão Vila Mariana</div>
+                      <div class="tbl-prop-sub">VM1427 • 145m² • 3 Suítes</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="tbl-price">R$ 1.850.000</td>
+                <td><span class="badge-status-on">👑 Oficial Fundador</span></td>
+                <td class="tbl-leads"><strong id="propVmLeadsCounter">48 cliques</strong></td>
+                <td class="tbl-url"><a href="/319413/apartamento-vila-mariana" target="_blank">.../319413/apartamento-vila-mariana</a></td>
+                <td>
+                  <div class="tbl-actions">
+                    <a href="/319413/apartamento-vila-mariana" target="_blank" class="btn-tbl-action" title="Ver Landing Page">👁</a>
+                    <button class="btn-tbl-action" title="Editar Anúncio">✏️</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="tbl-prop-info">
+                    <img src="/assets/prop1.jpg" alt="Cobertura Jardins" class="tbl-thumb">
+                    <div>
+                      <div class="tbl-prop-title">Cobertura Duplex 280m² nos Jardins</div>
+                      <div class="tbl-prop-sub">JD280 • 280m² • 4 Suítes</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="tbl-price">R$ 3.800.000</td>
+                <td><span class="badge-status-on">👑 Oficial Fundador</span></td>
+                <td class="tbl-leads"><strong>32 cliques</strong></td>
+                <td class="tbl-url"><a href="/319413/cobertura-jardins" target="_blank">.../319413/cobertura-jardins</a></td>
+                <td>
+                  <div class="tbl-actions">
+                    <a href="/319413/cobertura-jardins" target="_blank" class="btn-tbl-action" title="Ver Landing Page">👁</a>
+                    <button class="btn-tbl-action" title="Editar Anúncio">✏️</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAB 4: MÓDULO COMPLETO DE GESTÃO DE LEADS DO WHATSAPP -->
+      <section class="admin-tab-content" id="tab-leads">
+        <div class="tab-header-box">
+          <h1 class="tab-page-title">Gestão Completa de Leads do WhatsApp 💬</h1>
+          <p class="tab-page-desc">Histórico registrado em banco de dados antes da abertura do WhatsApp. Filtre por nome, telefone, imóvel, status e período.</p>
+        </div>
+
+        <!-- BARRA DE FILTROS DO MÓDULO DE LEADS -->
+        <div class="leads-filters-card">
+          <div class="filters-grid">
+            
+            <div class="filter-group">
+              <label class="filter-label" for="leadSearchInput">🔍 Pesquisar por Nome ou WhatsApp</label>
+              <input type="text" id="leadSearchInput" class="filter-input" placeholder="Ex: Carlos Mendes ou (11) 98421...">
+            </div>
+
+            <div class="filter-group">
+              <label class="filter-label" for="leadPropFilter">🏢 Filtrar por Imóvel</label>
+              <select id="leadPropFilter" class="filter-select">
+                <option value="TODOS">Todos os Imóveis</option>
+                <option value="VM1427">VM1427 - Apartamento Vila Mariana</option>
+                <option value="JD280">JD280 - Cobertura 280m² Jardins</option>
+                <option value="IT160">IT160 - Duplex 160m² Itaim</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label class="filter-label" for="leadStatusFilter">📌 Filtrar por Status</label>
+              <select id="leadStatusFilter" class="filter-select">
+                <option value="TODOS">Todos os Status</option>
+                <option value="Novo">Novo</option>
+                <option value="Em atendimento">Em atendimento</option>
+                <option value="Convertido">Convertido</option>
+                <option value="Perdido">Perdido</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label class="filter-label" for="leadPeriodFilter">📅 Período</label>
+              <select id="leadPeriodFilter" class="filter-select">
+                <option value="TODOS">Todo o Período</option>
+                <option value="HOJE">Hoje</option>
+                <option value="SEMANA">Últimos 7 dias</option>
+                <option value="MES">Últimos 30 dias</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- TABELA PRINCIPAL DE LEADS DO BANCO DE DADOS -->
+        <div class="properties-table-card">
+          <table class="admin-table" id="leadsTable">
+            <thead>
+              <tr>
+                <th>Cliente Lead</th>
+                <th>WhatsApp</th>
+                <th>Imóvel Solicitado</th>
+                <th>Data & Hora</th>
+                <th>Status Atual</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="leadsTableBody">
+              <!-- Renderizado dinamicamente pelo admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAB 5: PERFIL E CRECI -->
+      <section class="admin-tab-content" id="tab-profile">
+        <div class="tab-header-box">
+          <h1 class="tab-page-title">Perfil do Fundador Proprietário</h1>
+          <p class="tab-page-desc">Seus dados oficiais vinculados ao CRECI 319413 e expostos em todas as suas Landing Pages.</p>
+        </div>
+
+        <div class="card-box">
+          <div class="profile-edit-grid">
+            <div class="profile-avatar-upload">
+              <img src="/assets/consultant.jpg" alt="Foto Corretor" class="profile-preview-lg" style="border-color: #F59E0B;">
+              <button class="btn-sec-outline" style="margin-top: 10px;">Alterar Foto Oficial</button>
+            </div>
+
+            <div class="profile-fields-col">
+              <div class="form-group">
+                <label class="form-label">Nome Completo *</label>
+                <input type="text" class="form-input" value="Roberto Corrêa de Mello Junior">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">CRECI * (Namespace da URL Pública)</label>
+                <input type="text" class="form-input" value="319413" readonly style="color: #FBBF24; font-weight: 700;">
+                <span class="form-help">Sua página pública oficial: habyo.com.br/319413</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">WhatsApp para Receber Leads *</label>
+                <input type="text" class="form-input" value="(19) 99760-3139">
+              </div>
+
+              <button class="btn-form-primary" style="margin-top: 10px;">💾 Salvar Alterações de Perfil</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 6: CONTA FUNDADOR PROPRIETÁRIO -->
+      <section class="admin-tab-content" id="tab-billing">
+        <div class="tab-header-box">
+          <h1 class="tab-page-title">Conta Fundador Proprietário 👑</h1>
+          <p class="tab-page-desc">Sua conta possui isenção vitalícia permanente de cobranças na plataforma HABYO.</p>
+        </div>
+
+        <div class="card-box" style="border-color: rgba(245, 158, 11, 0.4);">
+          <div class="billing-grid-stats">
+            <div class="b-box">
+              <div class="b-val-lg" style="color: #FBBF24;">∞</div>
+              <div class="b-lbl-sub">Imóveis incluídos (Ilimitados)</div>
+            </div>
+            <div class="b-box">
+              <div class="b-val-lg" style="color: #60A5FA;">12</div>
+              <div class="b-lbl-sub">Imóveis ativos publicados</div>
+            </div>
+            <div class="b-box">
+              <div class="b-box-inside" style="color: #10B981;">
+                <div class="b-val-lg" style="color: #10B981;">R$ 0,00</div>
+                <div class="b-lbl-sub">Isenção Vitalícia</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="billing-info-rows" style="margin-top: 20px;">
+            <div class="b-row"><span class="b-row-lbl">Tipo da Conta:</span><span class="b-row-val" style="color: #FBBF24; font-weight: 800;">👑 Fundador Proprietário (Vitalícia)</span></div>
+            <div class="b-row"><span class="b-row-lbl">Titular da Conta:</span><span class="b-row-val">Roberto Corrêa de Mello Junior</span></div>
+            <div class="b-row"><span class="b-row-lbl">CRECI Registrado:</span><span class="b-row-val">CRECI 319413</span></div>
+            <div class="b-row"><span class="b-row-lbl">Valor de Cobrança:</span><span class="b-row-val" style="color: #10B981; font-weight: 800;">R$ 0,00 (Gratuito para sempre)</span></div>
+            <div class="b-row"><span class="b-row-lbl">Validade da Isenção:</span><span class="b-row-val" style="color: #10B981;">Vitalícia Permanente (Sem vencimento)</span></div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- BOTÃO FLUTUANTE DE FEEDBACK PARA CORRETORES BETA TESTERS -->
+  <button id="openFeedbackModalBtn" style="position: fixed; bottom: 24px; right: 24px; background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%); color: #FFF; border: 1px solid rgba(255,255,255,0.2); border-radius: 30px; padding: 12px 20px; font-weight: 800; font-size: 0.88rem; cursor: pointer; box-shadow: 0 4px 20px rgba(37,99,235,0.4); z-index: 999; display: flex; align-items: center; gap: 8px;">
+    💬 Enviar Feedback / Ideia
+  </button>
+
+  <!-- MODAL DE ENVIO DE FEEDBACK -->
+  <div class="modal-overlay" id="feedbackModal">
+    <div class="modal-container" style="max-width: 480px; padding: 24px;">
+      <button class="modal-close" id="closeFeedbackModal">&times;</button>
+      
+      <div style="text-align: center; margin-bottom: 20px;">
+        <div style="font-size: 2rem; margin-bottom: 6px;">💬</div>
+        <h3 style="font-size: 1.2rem; font-weight: 800;">O que podemos melhorar no HABYO?</h3>
+        <p style="font-size: 0.82rem; color: #94A3B8;">Sua opinião é enviada diretamente ao Fundador!</p>
+      </div>
+
+      <form id="betaFeedbackForm">
+        <div style="margin-bottom: 14px;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">Tipo de Feedback:</label>
+          <select id="fbTypeSelect" style="width: 100%; background: #0F172A; border: 1px solid rgba(255,255,255,0.1); color: #FFF; padding: 10px; border-radius: 6px;">
+            <option value="Melhoria">💡 Sugestão de Melhoria</option>
+            <option value="Elogio">❤️ Elogio / O que mais gostou</option>
+            <option value="Bug">🐛 Problema ou Dificuldade</option>
+            <option value="Ideia">🚀 Nova Ideia de Recurso</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">Sua Nota de Satisfação (1 a 5 Estrelas):</label>
+          <select id="fbRatingSelect" style="width: 100%; background: #0F172A; border: 1px solid rgba(255,255,255,0.1); color: #FBBF24; padding: 10px; border-radius: 6px; font-weight: 800;">
+            <option value="5">★★★★★ (5 - Excelente! Adorei)</option>
+            <option value="4">★★★★☆ (4 - Muito bom)</option>
+            <option value="3">★★★☆☆ (3 - Regular / Pode melhorar)</option>
+            <option value="2">★★☆☆☆ (2 - Dificuldades de uso)</option>
+            <option value="1">★☆☆☆☆ (1 - Insatisfeito)</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">Sua Mensagem / Comentário *</label>
+          <textarea id="fbMessageText" rows="4" style="width: 100%; background: #0F172A; border: 1px solid rgba(255,255,255,0.1); color: #FFF; padding: 10px; border-radius: 6px; font-size: 0.85rem;" placeholder="Conte-nos em detalhes o que gostou ou o que achou que pode ser aprimorado..." required></textarea>
+        </div>
+
+        <button type="submit" style="width: 100%; background: #10B981; color: #FFF; border: none; padding: 12px; border-radius: 6px; font-weight: 800; font-size: 0.9rem; cursor: pointer;">
+          🚀 Enviar Feedback ao Fundador
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="/admin.js"></script>
+</body>
+</html>

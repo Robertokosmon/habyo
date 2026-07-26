@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastre-se na HABYO | Plataforma Oficial do Corretor</title>
+  <meta name="description" content="Crie sua conta exclusiva de corretor de imóveis na HABYO.">
+  
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/register.css">
+</head>
+<body class="register-body">
+
+  <!-- SPLIT SCREEN IMMERSIVE LAYOUT -->
+  <div class="split-register-layout">
+    
+    <!-- LEFT COLUMN: LUXURY PROPERTY SLIDER SHOWCASE -->
+    <div class="register-left-showcase">
+      <div class="showcase-slider-wrap">
+        <img src="/assets/hero.jpg" alt="Apartamento Alto Padrão Vila Mariana" class="showcase-slide-img active" id="slideImg0">
+        <img src="/assets/tour_living.jpg" alt="Living Integrado com Vista Ampla" class="showcase-slide-img" id="slideImg1">
+        <img src="/assets/tour_suite.jpg" alt="Suíte Master com Closet" class="showcase-slide-img" id="slideImg2">
+        <img src="/assets/tour_balcony.jpg" alt="Varanda Gourmet Exclusiva" class="showcase-slide-img" id="slideImg3">
+        <img src="/assets/prop1.jpg" alt="Cobertura Duplex nos Jardins" class="showcase-slide-img" id="slideImg4">
+
+        <div class="showcase-gradient-overlay"></div>
+        
+        <!-- LOGO & BRANDING OVERLAY -->
+        <div class="showcase-branding-box">
+          <div class="showcase-logo">HABYO</div>
+          <div class="showcase-slogan">O imóvel é o meio. Você é a marca.</div>
+        </div>
+
+        <!-- FLOATING CARD OVERLAY -->
+        <div class="showcase-floating-card">
+          <div class="s-card-badge">👑 PLATAFORMA EXCLUSIVA DO CORRETOR</div>
+          <div class="s-card-title" id="showcaseSlideTitle">Apartamento Alto Padrão na Vila Mariana</div>
+          <div class="s-card-stats">
+            <span id="showcaseSlidePrice">R$ 1.850.000</span> &bull; 
+            <span id="showcaseSlideSpecs">145 m² &bull; 3 Suítes &bull; 2 Vagas</span>
+          </div>
+
+          <!-- SLIDE DOTS BAR -->
+          <div class="showcase-dots-bar" id="showcaseDotsBar">
+            <span class="s-dot active" data-slide-target="0"></span>
+            <span class="s-dot" data-slide-target="1"></span>
+            <span class="s-dot" data-slide-target="2"></span>
+            <span class="s-dot" data-slide-target="3"></span>
+            <span class="s-dot" data-slide-target="4"></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: COMPACT REGISTRATION WIZARD FORM -->
+    <div class="register-right-content">
+      <div class="register-header">
+        <!-- DYNAMIC ACCOUNT TYPE BADGE (DEGUSTAÇÃO 7 DIAS GRÁTIS) -->
+        <span class="brand-tag-mini" id="headerAccountTypeBadge" style="background: rgba(16, 185, 129, 0.2); color: #34D399; border-color: rgba(16, 185, 129, 0.4);">🎁 CADASTRO GRATUITO • 7 DIAS DE TESTE GRÁTIS</span>
+        <h1 class="register-title">Criar Conta de Corretor</h1>
+        <p class="register-sub">Crie seu Perfil Profissional e até 3 Landing Pages exclusivas grátis por 7 dias (sem cartão de crédito)!</p>
+      </div>
+
+      <div class="wizard-box">
+        <!-- WIZARD STEPS INDICATOR -->
+        <div class="wizard-steps-nav">
+          <div class="step-nav-item active" id="stepIndicator1">
+            <span class="step-num">1</span>
+            <span class="step-lbl">Seus Dados</span>
+          </div>
+          <div class="step-nav-item" id="stepIndicator2">
+            <span class="step-num">2</span>
+            <span class="step-lbl">CRECI & Poder</span>
+          </div>
+          <div class="step-nav-item" id="stepIndicator3">
+            <span class="step-num">3</span>
+            <span class="step-lbl">Ativação</span>
+          </div>
+        </div>
+
+        <!-- FORMULÁRIO DE CADASTRO -->
+        <form id="registerForm">
+          
+          <!-- PASSO 1: DADOS PESSOAIS & SENHA FORTE COM OLHO TOGGLE -->
+          <div class="wizard-step-panel active" id="stepPanel1">
+            <div class="reg-form-group">
+              <label class="reg-label" for="regFullName">Nome Completo *</label>
+              <input type="text" id="regFullName" class="reg-input" value="Roberto Corrêa de Mello Junior" placeholder="Seu nome completo" required>
+            </div>
+
+            <div class="reg-form-group">
+              <label class="reg-label" for="regEmail">Seu E-mail Pessoal / Profissional *</label>
+              <input type="email" id="regEmail" class="reg-input" value="roberto.mello.imoveis@gmail.com" placeholder="seuemail@gmail.com" required>
+            </div>
+
+            <!-- CAMPO SENHA COM OLHO VISUAL -->
+            <div class="reg-form-group">
+              <label class="reg-label" for="regPassword">Crie sua Senha *</label>
+              <div class="input-password-wrapper">
+                <input type="password" id="regPassword" class="reg-input" value="#Habyo01" placeholder="Ex: #Habyo01" required>
+                <button type="button" class="toggle-password-btn" id="toggleRegPassword" title="Exibir/Ocultar Senha">👁️</button>
+              </div>
+            </div>
+
+            <!-- CAMPO CONFIRMAR SENHA COM OLHO VISUAL -->
+            <div class="reg-form-group">
+              <label class="reg-label" for="regConfirmPassword">Confirme sua Senha *</label>
+              <div class="input-password-wrapper">
+                <input type="password" id="regConfirmPassword" class="reg-input" value="#Habyo01" placeholder="Repita a senha" required>
+                <button type="button" class="toggle-password-btn" id="toggleConfirmPassword" title="Exibir/Ocultar Senha">👁️</button>
+              </div>
+            </div>
+
+            <!-- BADGES DE VALIDAÇÃO DE SENHA EM TEMPO REAL -->
+            <div class="password-rules-box">
+              <div class="rule-item" id="ruleUppercase">
+                <span class="rule-icon">❌</span> 1 Letra Maiúscula
+              </div>
+              <div class="rule-item" id="ruleNumber">
+                <span class="rule-icon">❌</span> 1 Número
+              </div>
+              <div class="rule-item" id="ruleSpecial">
+                <span class="rule-icon">❌</span> 1 Caractere Especial (#, @, $, etc.)
+              </div>
+              <div class="rule-item" id="ruleMatch">
+                <span class="rule-icon">❌</span> As senhas coincidem
+              </div>
+            </div>
+
+            <div class="step-buttons">
+              <button type="button" class="btn-step-next" id="btnNext1">Avançar para CRECI & WhatsApp &rarr;</button>
+            </div>
+          </div>
+
+          <!-- PASSO 2: CRECI E WHATSAPP COM PREVIEW EM TEMPO REAL -->
+          <div class="wizard-step-panel" id="stepPanel2">
+            
+            <div class="reg-form-group">
+              <label class="reg-label" for="regCreci">Seu Número de CRECI *</label>
+              <input type="text" id="regCreci" class="reg-input" value="319413" placeholder="Ex: 319413" required>
+              
+              <!-- LIVE URL PREVIEW BADGE -->
+              <div class="live-url-preview-badge" id="liveUrlPreviewBadge">
+                🌐 URL Oficial: <strong id="previewCreciUrl">habyo.com.br/319413</strong>
+              </div>
+            </div>
+
+            <div class="reg-form-group">
+              <label class="reg-label" for="regWhatsapp">WhatsApp Profissional com DDD *</label>
+              <input type="tel" id="regWhatsapp" class="reg-input" value="(19) 99760-3139" placeholder="(19) 99760-3139" required>
+              <span class="reg-help">Seus leads vão direto para o seu WhatsApp.</span>
+            </div>
+
+            <!-- SELEÇÃO DE PLANO DE ASSINATURA MERCADO PAGO -->
+            <div class="founder-card-option" id="dynamicPerksCard">
+              <div class="f-badge" id="perksCardBadge">💳 SELEÇÃO DE PLANO DE ASSINATURA (MERCADO PAGO)</div>
+              
+              <div class="plan-options-radio-grid" style="display: grid; gap: 10px; margin-top: 10px; text-align: left;">
+                <label style="background: rgba(245, 158, 11, 0.15); border: 2px solid #F59E0B; padding: 12px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
+                  <div>
+                    <input type="radio" name="planoAssinatura" value="fundador_semente" checked style="margin-right: 8px;">
+                    <strong style="color: #FBBF24;">⭐ Plano Fundador Semente</strong> <span style="font-size: 0.75rem; background: #F59E0B; color: #000; padding: 2px 6px; border-radius: 4px; font-weight: 800; margin-left: 4px;">100 PRIMEIRAS VAGAS</span>
+                    <div style="font-size: 0.78rem; color: #94A3B8; margin-top: 2px;">Até 10 Landing Pages + Galeria Vídeo HD + Leads no WhatsApp + Suporte</div>
+                  </div>
+                  <span style="color: #FBBF24; font-size: 1.1rem; font-weight: 900;">R$ 60<small style="font-size:0.75rem; font-weight:400;">/mês</small></span>
+                </label>
+
+                <label style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); padding: 10px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
+                  <div>
+                    <input type="radio" name="planoAssinatura" value="iniciante" style="margin-right: 8px;">
+                    <strong>Plano Iniciante</strong> (até 3 Landing Pages + Vídeo)
+                  </div>
+                  <span style="color: #60A5FA; font-weight: 800;">R$ 47/mês</span>
+                </label>
+
+                <label style="background: rgba(37, 99, 235, 0.15); border: 1px solid rgba(37, 99, 235, 0.4); padding: 10px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
+                  <div>
+                    <input type="radio" name="planoAssinatura" value="profissional" style="margin-right: 8px;">
+                    <strong>Plano Profissional</strong> (até 10 Landing Pages + Vídeo)
+                  </div>
+                  <span style="color: #34D399; font-weight: 800;">R$ 97/mês</span>
+                </label>
+
+                <label style="background: rgba(245, 158, 11, 0.1); border: 1px dashed rgba(245, 158, 11, 0.4); padding: 8px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
+                  <div>
+                    <input type="radio" name="planoAssinatura" value="adicional" style="margin-right: 8px;">
+                    <strong>Pacote Adicional</strong> (+ 5 Landing Pages)
+                  </div>
+                  <span style="color: #FBBF24; font-weight: 800;">+ R$ 47/mês</span>
+                </label>
+              </div>
+
+              <div class="founder-perks-grid" style="margin-top: 12px;">
+                <div class="perk-box"><span>💳</span> PIX & Cartão de Crédito</div>
+                <div class="perk-box"><span>💬</span> Leads no WhatsApp 24/7</div>
+                <div class="perk-box"><span>🛡️</span> Exclusividade por CRECI</div>
+                <div class="perk-box"><span>⚡</span> Ativação Automática MP</div>
+              </div>
+            </div>
+
+            <div class="step-buttons">
+              <button type="button" class="btn-step-prev" id="btnPrev2">&larr; Voltar</button>
+              <button type="button" class="btn-step-next" id="btnNext2">Enviar E-mail de Ativação &rarr;</button>
+            </div>
+          </div>
+
+          <!-- PASSO 3: VERIFICAÇÃO NO E-MAIL -->
+          <div class="wizard-step-panel" id="stepPanel3">
+            <div class="email-waiting-box">
+              <div class="mail-icon-pulse">📩</div>
+              <h3>E-mail de Ativação Gerado!</h3>
+              <p>O e-mail oficial foi preparado para <strong id="displayTargetEmail">roberto.mello.imoveis@gmail.com</strong>.</p>
+
+              <!-- NOTA EXPLICATIVA SOBRE O AMBIENTE LOCAL VS HOSPEDAGEM -->
+              <div style="background: rgba(37, 99, 235, 0.12); border: 1px solid rgba(37, 99, 235, 0.3); padding: 10px 14px; border-radius: 10px; font-size: 0.78rem; color: #93C5FD; margin-bottom: 16px; text-align: left; line-height: 1.4;">
+                ℹ️ <strong>Nota de Teste em Servidor Local:</strong> Em ambiente local (localhost), a mensagem de e-mail é gerada e visualizada diretamente abaixo ou pelo link de confirmação do servidor.
+              </div>
+
+              <div class="email-action-buttons">
+                <!-- LINK DIRETO DE CONFIRMAÇÃO DO E-MAIL -->
+                <a href="/activate.html?creci=319413" class="btn-open-real-gmail" id="directActivationLink">
+                  ⚡️ Confirmar E-mail & Ativar Perfil (Link do E-mail) &rarr;
+                </a>
+
+                <!-- BOTÃO DE VISUALIZAÇÃO DA CAIXA DE ENTRADA GERADA -->
+                <a href="#" target="_blank" class="btn-direct-activation-link" id="previewEmailInboxBtn" style="display:none; border-color:#10B981; color:#34D399;">
+                  ✉️ Visualizar Mensagem do E-mail Enviado
+                </a>
+              </div>
+
+              <div class="resend-link-row">
+                Não recebeu o e-mail? <a href="#" id="resendEmailTrigger">Reenviar link de confirmação</a>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="/register.js"></script>
+</body>
+</html>

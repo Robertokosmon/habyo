@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HABYO - Painel do Super Admin (Gestão Global do SaaS)</title>
+  <meta name="description" content="Painel de controle geral do SaaS HABYO para gestão de faturamento MRR, assinaturas do Mercado Pago e corretores cadastrados.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/superadmin.css">
+</head>
+<body class="superadmin-body">
+
+  <!-- ===================================== -->
+  <!-- 1. HEADER / NAVBAR SUPER ADMIN        -->
+  <!-- ===================================== -->
+  <header class="sa-navbar">
+    <div class="sa-brand-wrap">
+      <a href="/" class="sa-brand-logo">HABYO</a>
+      <span class="sa-admin-badge">👑 SUPER ADMIN SAAS</span>
+    </div>
+
+    <div class="sa-user-info">
+      <img src="/assets/consultant.jpg" alt="Roberto Mello" class="sa-avatar">
+      <div>
+        <strong class="sa-user-name">Roberto Corrêa de Mello Junior</strong>
+        <span class="sa-user-role">Fundador & Gestor Geral</span>
+      </div>
+      <a href="/admin" class="btn-goto-broker">Painel do Corretor &rarr;</a>
+    </div>
+  </header>
+
+  <!-- ===================================== -->
+  <!-- 2. CONTEÚDO PRINCIPAL (DASHBOARD)     -->
+  <!-- ===================================== -->
+  <main class="sa-main-container">
+    
+    <!-- BANNER DE BOAS-VINDAS -->
+    <div class="sa-hero-header">
+      <div>
+        <h1>Painel de Controle SaaS & Faturamento</h1>
+        <p>Visão em tempo real da receita recorrente (MRR), assinaturas ativas e acervo de Landing Pages.</p>
+      </div>
+      <div class="sa-gateway-pill">
+        <span class="mp-icon">💳</span> Integrado com <strong>Mercado Pago</strong> (PIX & Cartão)
+      </div>
+    </div>
+
+    <!-- 4 METRICS CARDS (KPIS) -->
+    <section class="sa-kpi-grid">
+      
+      <div class="kpi-card mrr-card">
+        <div class="kpi-icon-wrap">💰</div>
+        <div>
+          <span class="kpi-label">Receita Recorrente (MRR)</span>
+          <h2 class="kpi-value" id="kpiMrr">R$ 97,00<span class="kpi-sub">/mês</span></h2>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-icon-wrap">👤</div>
+        <div>
+          <span class="kpi-label">Total de Corretores</span>
+          <h2 class="kpi-value" id="kpiTotalCorretores">3 <span class="kpi-sub">cadastrados</span></h2>
+        </div>
+      </div>
+
+      <div class="kpi-card green-card">
+        <div class="kpi-icon-wrap">⚡</div>
+        <div>
+          <span class="kpi-label">Assinaturas Ativas</span>
+          <h2 class="kpi-value" id="kpiAtivos">100% <span class="kpi-sub">adimplentes</span></h2>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-icon-wrap">🏠</div>
+        <div>
+          <span class="kpi-label">Total de LPs Publicadas</span>
+          <h2 class="kpi-value" id="kpiTotalLps">3 <span class="kpi-sub">páginas</span></h2>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- CONFIGURAÇÃO DAS CREDENCIAIS DO MERCADO PAGO -->
+    <section class="sa-plans-box" style="margin-bottom: 24px;">
+      <div class="box-header">
+        <h3>💳 Conectar sua Conta do Mercado Pago para Receber</h3>
+        <span class="badge-active-gate" style="background: rgba(16, 185, 129, 0.2); color: #34D399;">Ativação de Pagamentos</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px; align-items: center;">
+        <div>
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 6px; color: var(--text-muted);">
+            Access Token de Produção do Mercado Pago (APP_USR-...):
+          </label>
+          <div style="display: flex; gap: 10px;">
+            <input type="password" id="mpAccessTokenInput" class="sa-input" value="APP_USR-3947682230425760-072614-eb74a9a099a5860a70d8f9c09ef8043c-78290161" placeholder="Cole seu Access Token (APP_USR-...)" style="font-family: monospace;">
+            <button type="button" class="btn-sa-action" id="toggleMpTokenBtn">👁️ Mostrar</button>
+            <button type="button" class="btn-sa-save" id="saveMpTokenBtn" style="white-space: nowrap; padding: 0 20px;">💾 Salvar Token</button>
+          </div>
+          <div style="display: flex; gap: 12px; margin-top: 8px; font-size: 0.76rem; color: #94A3B8;">
+            <span>🔑 Public Key: <code style="color: #60A5FA;">APP_USR-a225c01d-6fcd-4d55-afe4-d5f7c86cf735</code></span>
+            <span>🆔 Client ID: <code style="color: #60A5FA;">3947682230425760</code></span>
+          </div>
+        </div>
+
+        <div style="background: #0F172A; border: 1px solid var(--border-color); padding: 14px; border-radius: 8px;">
+          <strong style="font-size: 0.82rem; color: #FFF; display: block; margin-bottom: 4px;">URL do Webhook (Notificação):</strong>
+          <code style="font-size: 0.75rem; color: #60A5FA; word-break: break-all;">https://www.habyo.com.br/api/v1/payments/webhook</code>
+          <span style="font-size: 0.72rem; color: var(--text-muted); display: block; margin-top: 4px;">Copie e cole no painel do Mercado Pago Developers em Webhooks.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TABELA DE PLANOS DE ASSINATURA OFICIAIS -->
+    <section class="sa-plans-box">
+      <div class="box-header">
+        <h3>💰 Tabela de Planos e Preços Oficiais do SaaS</h3>
+        <span class="badge-active-gate">Mercado Pago Ativo</span>
+      </div>
+
+      <div class="plans-cards-row" style="grid-template-columns: repeat(4, 1fr);">
+        
+        <div class="p-card featured" style="border-color: #F59E0B; box-shadow: 0 4px 20px rgba(245, 158, 11, 0.2);">
+          <div class="p-badge" style="color: #FBBF24;">⭐ Exclusivo (100 Vagas)</div>
+          <h4>Fundador Semente</h4>
+          <div class="p-price">R$ 60 <small>/mês</small></div>
+          <ul>
+            <li>✓ Até <strong>10 Landing Pages</strong></li>
+            <li>✓ Galeria em Vídeo HD</li>
+            <li>✓ Leads no WhatsApp + Suporte</li>
+          </ul>
+        </div>
+
+        <div class="p-card">
+          <div class="p-badge">Plano Básico</div>
+          <h4>Plano Iniciante</h4>
+          <div class="p-price">R$ 47 <small>/mês</small></div>
+          <ul>
+            <li>✓ Até <strong>3 Landing Pages</strong></li>
+            <li>✓ Galeria de fotos e vídeo</li>
+            <li>✓ Leads direto no WhatsApp</li>
+          </ul>
+        </div>
+
+        <div class="p-card featured">
+          <div class="p-badge popular">Mais Popular</div>
+          <h4>Plano Profissional</h4>
+          <div class="p-price">R$ 97 <small>/mês</small></div>
+          <ul>
+            <li>✓ Até <strong>10 Landing Pages</strong></li>
+            <li>✓ Galeria em Vídeo HD</li>
+            <li>✓ Leads no WhatsApp + Suporte</li>
+          </ul>
+        </div>
+
+        <div class="p-card addon">
+          <div class="p-badge addon-badge">+ Expansão</div>
+          <h4>Pacote Adicional</h4>
+          <div class="p-price">+ R$ 47 <small>/mês</small></div>
+          <ul>
+            <li>✓ <strong>+ 5 Landing Pages</strong> adicionais</li>
+            <li>✓ Adicionado a qualquer plano</li>
+            <li>✓ Ativação imediata via PIX</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- GERADOR DE CONVITES PARA TESTES BETA -->
+    <section class="sa-plans-box" style="margin-bottom: 24px;">
+      <div class="box-header">
+        <h3>✉️ Gerar Convite de Teste Grátis para Corretores Beta</h3>
+        <span class="badge-active-gate" style="background: rgba(245, 158, 11, 0.2); color: #FBBF24;">30 Dias Grátis</span>
+      </div>
+
+      <form id="generateInviteForm" style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 12px; align-items: end;">
+        <div>
+          <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">Nome do Corretor Convidado *</label>
+          <input type="text" id="inviteNameInput" class="sa-input" placeholder="Ex: Carlos Santos" required>
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">E-mail do Corretor *</label>
+          <input type="email" id="inviteEmailInput" class="sa-input" placeholder="corretor@imoveis.com.br" required>
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">Plano para Degustação</label>
+          <select id="invitePlanoSelect" class="sa-select">
+            <option value="Plano Fundador Semente">⭐ Plano Fundador Semente (10 LPs)</option>
+            <option value="Plano Profissional">Plano Profissional (10 LPs)</option>
+            <option value="Plano Iniciante">Plano Iniciante (3 LPs)</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-sa-save" style="white-space: nowrap; height: 42px; background: #2563EB;">
+          ✉️ Gerar Link de Convite
+        </button>
+      </form>
+
+      <!-- RESULTADO DO CONVITE GERADO -->
+      <div id="inviteResultBox" style="display: none; margin-top: 16px; background: #0F172A; border: 1px solid var(--primary-blue); padding: 14px; border-radius: 8px;">
+        <strong style="color: #60A5FA; display: block; margin-bottom: 6px;">✅ Link de Convite Gerado com Sucesso!</strong>
+        <div style="display: flex; gap: 10px;">
+          <input type="text" id="generatedLinkInput" class="sa-input" readonly style="font-family: monospace; font-size: 0.82rem; color: #FFF;">
+          <button type="button" class="btn-sa-action" id="copyInviteLinkBtn" style="white-space: nowrap;">📋 Copiar Link</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CENTRAL DE FEEDBACKS DOS BETA TESTERS -->
+    <section class="sa-plans-box" style="margin-bottom: 24px;">
+      <div class="box-header-flex">
+        <div>
+          <h3>💬 Central de Feedbacks e Sugestões dos Corretores Testers</h3>
+          <p>Veja o que os corretores estão achando e quais melhorias solicitaram.</p>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="sa-table">
+          <thead>
+            <tr>
+              <th>Corretor / CRECI</th>
+              <th>Tipo</th>
+              <th>Avaliação (NPS)</th>
+              <th>Mensagem / Sugestão de Melhoria</th>
+              <th>Data</th>
+            </tr>
+          </thead>
+          <tbody id="feedbacksTbody">
+            <!-- CARREGADO DINAMICAMENTE VIA JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- GESTÃO DE CORRETORES ASSINANTES (TABELA) -->
+    <section class="sa-brokers-table-box">
+      <div class="box-header-flex">
+        <div>
+          <h3>👥 Gestão de Corretores e Assinantes</h3>
+          <p>Gerencie planos, limites de Landing Pages e status de pagamento de cada corretor.</p>
+        </div>
+
+        <div class="sa-search-wrap">
+          <input type="text" id="brokerSearchInput" placeholder="Buscar por Nome ou CRECI..." class="sa-search-input">
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="sa-table" id="brokersTable">
+          <thead>
+            <tr>
+              <th>Corretor / CRECI</th>
+              <th>Contato (E-mail / WhatsApp)</th>
+              <th>Plano Atual</th>
+              <th>Limite LPs</th>
+              <th>Status Assinatura</th>
+              <th>Ações do Super Admin</th>
+            </tr>
+          </thead>
+          <tbody id="brokersTbody">
+            <!-- CARREGADO DINAMICAMENTE VIA JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL DE EDIÇÃO DE PLANO DO CORRETOR -->
+  <div class="sa-modal-backdrop" id="editBrokerModal">
+    <div class="sa-modal-box">
+      <button class="sa-modal-close" id="closeEditModal">&times;</button>
+      
+      <div class="sa-modal-header">
+        <h3>⚙️ Editar Assinatura do Corretor</h3>
+        <p id="editModalSubtitle">Alterar plano ou limites do corretor selecionado</p>
+      </div>
+
+      <form id="editBrokerForm">
+        <input type="hidden" id="editCreciInput">
+
+        <div class="form-group">
+          <label for="editPlanoSelect">Plano de Assinatura:</label>
+          <select id="editPlanoSelect" class="sa-select">
+            <option value="Plano Fundador Semente">⭐ Plano Fundador Semente (R$ 60/mês - 10 LPs)</option>
+            <option value="Plano Iniciante">Plano Iniciante (R$ 47/mês - 3 LPs)</option>
+            <option value="Plano Profissional">Plano Profissional (R$ 97/mês - 10 LPs)</option>
+            <option value="Fundador">Fundador VIP (Ilimitado - Vitalício)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="editLimiteInput">Limite Máximo de Landing Pages:</label>
+          <input type="number" id="editLimiteInput" class="sa-input" value="3" min="1" max="9999">
+        </div>
+
+        <div class="form-group">
+          <label for="editStatusSelect">Status da Assinatura:</label>
+          <select id="editStatusSelect" class="sa-select">
+            <option value="ativo">🟢 Ativo (Acesso Liberado)</option>
+            <option value="inadimplente">🔴 Inadimplente (Bloqueado por Falta de Pagamento)</option>
+            <option value="degustacao">🟡 Degustação / Teste Grátis</option>
+            <option value="cancelado">⚫ Cancelado</option>
+          </select>
+        </div>
+
+        <div class="form-group-checkbox">
+          <label>
+            <input type="checkbox" id="editIsVipCheck">
+            <strong>Conceder Acesso VIP Vitalício (Sem Cobrança)</strong>
+          </label>
+        </div>
+
+        <div class="sa-modal-actions">
+          <button type="submit" class="btn-sa-save">Salvar Alterações</button>
+          <button type="button" class="btn-sa-cancel" id="cancelEditBtn">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/superadmin.js"></script>
+</body>
+</html>

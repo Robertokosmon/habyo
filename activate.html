@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ativação de Conta | HABYO Plataforma Imobiliária</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/register.css">
+  <style>
+    body {
+      background: radial-gradient(circle at center, rgba(37, 99, 235, 0.15) 0%, transparent 60%), #04060A;
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .activate-card {
+      background: rgba(15, 19, 28, 0.94);
+      backdrop-filter: blur(25px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 44px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9);
+      position: relative;
+    }
+
+    .activate-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #10B981 0%, #2563EB 50%, #F59E0B 100%);
+      border-radius: 20px 20px 0 0;
+    }
+
+    .check-icon-pulse {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: rgba(16, 185, 129, 0.15);
+      border: 2px solid #10B981;
+      color: #10B981;
+      font-size: 2.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px auto;
+      box-shadow: 0 0 30px rgba(16, 185, 129, 0.4);
+      animation: popCheck 0.4s ease-out;
+    }
+
+    @keyframes popCheck {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .activate-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #FFF;
+      margin-bottom: 8px;
+    }
+
+    .activate-sub {
+      font-size: 0.9rem;
+      color: #94A3B8;
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    .btn-go-admin {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: #FFF;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 16px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+      transition: all 0.25s ease;
+    }
+
+    .btn-go-admin:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 40px rgba(16, 185, 129, 0.6);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="activate-card">
+    <div class="check-icon-pulse">✓</div>
+    <h1 class="activate-title" id="activateStatusTitle">Conta Ativada com Sucesso! 👑</h1>
+    <p class="activate-sub" id="activateStatusDesc">
+      Sua conta de <strong>Fundador Proprietário (CRECI 319413)</strong> foi verificada com sucesso através do e-mail. Você possui acesso vitalício e ilimitado a todos os módulos.
+    </p>
+
+    <a href="/admin.html" class="btn-go-admin">Acessar Meu Painel Administrativo &rarr;</a>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const creci = urlParams.get('creci') || '319413';
+      const isFounder = (creci === '319413');
+
+      sessionStorage.setItem('habyo_logged_in', 'true');
+      localStorage.setItem('habyo_session', JSON.stringify({
+        nome: isFounder ? 'Roberto Corrêa de Mello Junior' : 'Corretor Ativado',
+        creci: creci,
+        email: isFounder ? 'roberto.mello.imoveis@gmail.com' : 'corretor@email.com',
+        whatsapp: '(19) 99760-3139',
+        is_vip: isFounder,
+        plano: isFounder ? '👑 Fundador Proprietário' : '🚀 Corretor Profissional'
+      }));
+
+      // Redirecionar em 3 segundos automaticamente
+      setTimeout(() => {
+        window.location.href = '/admin.html';
+      }, 3000);
+    });
+  </script>
+</body>
+</html>

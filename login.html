@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acesso Restrito ao Painel do Corretor | HABYO</title>
+  <meta name="description" content="Área de login para o Fundador Proprietário Roberto Corrêa de Mello Junior (CRECI 319413).">
+  
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/register.css">
+</head>
+<body class="register-body">
+
+  <!-- SPLIT SCREEN IMMERSIVE LAYOUT (PADRÃO IGUAL AO CADASTRO) -->
+  <div class="split-register-layout">
+    
+    <!-- LEFT COLUMN: LUXURY PROPERTY SLIDER SHOWCASE -->
+    <div class="register-left-showcase">
+      <div class="showcase-slider-wrap">
+        <img src="/assets/hero.jpg" alt="Apartamento Alto Padrão Vila Mariana" class="showcase-slide-img active" id="slideImg0">
+        <img src="/assets/tour_living.jpg" alt="Living Integrado com Vista Ampla" class="showcase-slide-img" id="slideImg1">
+        <img src="/assets/tour_suite.jpg" alt="Suíte Master com Closet" class="showcase-slide-img" id="slideImg2">
+        <img src="/assets/tour_balcony.jpg" alt="Varanda Gourmet Exclusiva" class="showcase-slide-img" id="slideImg3">
+        <img src="/assets/prop1.jpg" alt="Cobertura Duplex nos Jardins" class="showcase-slide-img" id="slideImg4">
+
+        <div class="showcase-gradient-overlay"></div>
+        
+        <!-- LOGO & BRANDING OVERLAY -->
+        <div class="showcase-branding-box">
+          <div class="showcase-logo">HABYO</div>
+          <div class="showcase-slogan">O imóvel é o meio. Você é a marca.</div>
+        </div>
+
+        <!-- FLOATING CARD OVERLAY -->
+        <div class="showcase-floating-card">
+          <div class="s-card-badge">👑 PLATAFORMA EXCLUSIVA DO CORRETOR</div>
+          <div class="s-card-title" id="showcaseSlideTitle">Apartamento Alto Padrão na Vila Mariana</div>
+          <div class="s-card-stats">
+            <span id="showcaseSlidePrice">R$ 1.850.000</span> &bull; 
+            <span id="showcaseSlideSpecs">145 m² &bull; 3 Suítes &bull; 2 Vagas</span>
+          </div>
+
+          <!-- SLIDE DOTS BAR -->
+          <div class="showcase-dots-bar" id="showcaseDotsBar">
+            <span class="s-dot active" data-slide-target="0"></span>
+            <span class="s-dot" data-slide-target="1"></span>
+            <span class="s-dot" data-slide-target="2"></span>
+            <span class="s-dot" data-slide-target="3"></span>
+            <span class="s-dot" data-slide-target="4"></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: COMPACT CENTERED LOGIN FORM (SEM BOTÃO DO GMAIL) -->
+    <div class="register-right-content">
+      <div class="register-header">
+        <span class="brand-tag-mini" style="background: rgba(37, 99, 235, 0.15); border-color: rgba(37, 99, 235, 0.35); color: #60A5FA;">🔒 ACESSO RESTRITO AO PAINEL</span>
+        <h1 class="register-title">Entrar na Sua Conta</h1>
+        <p class="register-sub">Acesse o seu Painel de Gestão de Imóveis e Leads de WhatsApp</p>
+      </div>
+
+      <div class="wizard-box">
+        <form id="loginForm">
+          <div class="reg-form-group">
+            <label class="reg-label" for="loginUser">E-mail ou CRECI *</label>
+            <input type="text" id="loginUser" class="reg-input" value="319413" placeholder="Seu e-mail ou CRECI 319413" required>
+          </div>
+
+          <div class="reg-form-group">
+            <label class="reg-label" for="loginPass">Senha de Acesso *</label>
+            <div class="input-password-wrapper">
+              <input type="password" id="loginPass" class="reg-input" value="#Habyo01" placeholder="••••••••" required>
+              <button type="button" class="toggle-password-btn" id="togglePassBtn" title="Exibir/Ocultar Senha">👁️</button>
+            </div>
+          </div>
+
+          <div id="loginAlertBox" style="display:none; color:#EF4444; font-size:0.8rem; margin-bottom:10px; text-align:center;"></div>
+
+          <div class="step-buttons">
+            <button type="submit" class="btn-step-next" style="width:100%;">Entrar no Painel &rarr;</button>
+          </div>
+
+          <div style="text-align: center; margin-top: 18px; font-size: 0.8rem; color: var(--text-muted);">
+            Ainda não tem conta? <a href="/register.html" style="color: #60A5FA; font-weight: 700;">Cadastre-se aqui</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="/login.js"></script>
+</body>
+</html>
