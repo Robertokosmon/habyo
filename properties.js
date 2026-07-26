@@ -2,7 +2,8 @@
 
 const express = require('express');
 const router = express.Router();
-const db = require('../db');
+let db;
+try { db = require('../db'); } catch (e) { db = require('./db'); }
 
 // 1. GET /api/v1/properties -> Listar imóveis do corretor por CRECI
 router.get('/', async (req, res) => {

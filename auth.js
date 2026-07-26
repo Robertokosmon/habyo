@@ -5,7 +5,8 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
-const db = require('../db');
+let db;
+try { db = require('../db'); } catch (e) { db = require('./db'); }
 
 const JWT_SECRET = process.env.JWT_SECRET || 'habyo_super_secret_jwt_key_319413_2026';
 

@@ -2,7 +2,8 @@
 
 const express = require('express');
 const router = express.Router();
-const db = require('../db');
+let db;
+try { db = require('../db'); } catch (e) { db = require('./db'); }
 
 // 1. POST /api/v1/leads -> Capturar lead da Landing Page antes do WhatsApp
 router.post('/', async (req, res) => {

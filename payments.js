@@ -2,7 +2,8 @@
 
 const express = require('express');
 const router = express.Router();
-const db = require('../db');
+let db;
+try { db = require('../db'); } catch (e) { db = require('./db'); }
 
 // PREÇOS E REGRAS OFICIAIS HABYO SAAS
 const PLANOS_CONFIG = {

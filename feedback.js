@@ -2,7 +2,8 @@
 
 const express = require('express');
 const router = express.Router();
-const db = require('../db');
+let db;
+try { db = require('../db'); } catch (e) { db = require('./db'); }
 
 // POST /api/v1/feedback/submit -> Enviar Feedback do Corretor para o Super Admin
 router.post('/submit', async (req, res) => {
