@@ -77,6 +77,10 @@ app.get('/register', (req, res) => {
   res.sendFile(path.join(__dirname, 'register.html'));
 });
 
+app.get('/reset-password', (req, res) => {
+  res.sendFile(path.join(__dirname, 'reset-password.html'));
+});
+
 app.get('/property', (req, res) => {
   res.sendFile(path.join(__dirname, 'property.html'));
 });

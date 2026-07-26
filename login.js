@@ -141,4 +141,71 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // LÓGICA DO MODAL DE RECUPERAÇÃO DE SENHA
+  const openForgotModalBtn = document.getElementById('openForgotModalBtn');
+  const closeForgotModalBtn = document.getElementById('closeForgotModal');
+  const forgotModal = document.getElementById('forgotModal');
+  const forgotForm = document.getElementById('forgotPasswordForm');
+  const forgotInput = document.getElementById('forgotInput');
+  const forgotResultBox = document.getElementById('forgotResultBox');
+
+  if (openForgotModalBtn && forgotModal) {
+    openForgotModalBtn.addEventListener('click', () => {
+      forgotModal.classList.add('active');
+      if (forgotInput) forgotInput.focus();
+    });
+  }
+
+  if (closeForgotModalBtn && forgotModal) {
+    closeForgotModalBtn.addEventListener('click', () => {
+      forgotModal.classList.remove('active');
+    });
+  }
+
+  if (forgotForm) {
+    forgotForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const loginInputVal = forgotInput ? forgotInput.value.trim() : '';
+
+      if (!loginInputVal) return;
+
+      if (forgotResultBox) {
+        forgotResultBox.style.display = 'block';
+        forgotResultBox.style.background = 'rgba(37, 99, 235, 0.15)';
+        forgotResultBox.style.color = '#60A5FA';
+        forgotResultBox.textContent = '🔄 Processando solicitação...';
+      }
+
+      try {
+        const response = await fetch('/api/v1/auth/forgot-password', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ loginInput: loginInputVal })
+        });
+        const data = await response.json();
+
+        if (data.success) {
+          forgotResultBox.style.background = 'rgba(16, 185, 129, 0.2)';
+          forgotResultBox.style.color = '#34D399';
+          forgotResultBox.textContent = data.message;
+          if (data.resetLink) {
+            setTimeout(() => {
+              if (confirm('🔑 Deseja ir diretamente para a tela de redefinição de senha agora?')) {
+                window.location.href = data.resetLink;
+              }
+            }, 1000);
+          }
+        } else {
+          forgotResultBox.style.background = 'rgba(239, 68, 68, 0.2)';
+          forgotResultBox.style.color = '#F87171';
+          forgotResultBox.textContent = data.error || 'Erro ao processar recuperação.';
+        }
+      } catch (err) {
+        forgotResultBox.style.background = 'rgba(239, 68, 68, 0.2)';
+        forgotResultBox.style.color = '#F87171';
+        forgotResultBox.textContent = '❌ Erro ao conectar ao servidor.';
+      }
+    });
+  }
+
 });
