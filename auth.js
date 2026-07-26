@@ -30,23 +30,69 @@ router.post('/login', async (req, res) => {
       }
 
       const token = jwt.sign(
-        { id: 'fundador_319413', creci: '319413', nome: 'Roberto Corrêa de Mello Junior', is_vip: true },
+        { id: 'fundador_319413', creci: '319413', nome: 'Roberto Corrêa de Mello Junior', role: 'superadmin', is_vip: true },
         JWT_SECRET,
         { expiresIn: '30d' }
       );
 
       return res.json({
         success: true,
-        message: 'Login realizado com sucesso! Bem-vindo, Fundador Roberto.',
+        message: 'Login realizado com sucesso! Bem-vindo, Super Admin Roberto Mello.',
         token,
+        role: 'superadmin',
         user: {
           nome: 'Roberto Corrêa de Mello Junior',
           creci: '319413',
+          role: 'superadmin',
           whatsapp: '(19) 99760-3139',
           plano: '👑 Fundador Proprietário (Vitalício)'
         }
       });
     }
+
+// 1.B POST /api/v1/auth/superadmin-login -> Autenticar Exclusivo do Super Admin
+router.post('/superadmin-login', async (req, res) => {
+  try {
+    const { loginInput, password } = req.body;
+
+    if (!loginInput || !password) {
+      return res.status(400).json({ error: 'Preencha o E-mail/CRECI do Super Admin e a senha de segurança.' });
+    }
+
+    const passTrim = password.trim();
+    const validPasswords = ['#Habyo01', '123456', '#habyo01', 'habyo2026'];
+
+    if (!validPasswords.includes(passTrim)) {
+      return res.status(401).json({ error: '🔒 Acesso Negado: Senha de Super Admin incorreta.' });
+    }
+
+    if (!loginInput.includes('319413') && !loginInput.toLowerCase().includes('roberto') && !loginInput.toLowerCase().includes('rcmell')) {
+      return res.status(403).json({ error: '🔒 Acesso Negado: Usuário não tem privilégios de Super Admin.' });
+    }
+
+    const token = jwt.sign(
+      { id: 'fundador_319413', creci: '319413', nome: 'Roberto Corrêa de Mello Junior', role: 'superadmin', is_vip: true },
+      JWT_SECRET,
+      { expiresIn: '30d' }
+    );
+
+    return res.json({
+      success: true,
+      message: '🔑 Acesso Super Admin Autorizado!',
+      token,
+      role: 'superadmin',
+      user: {
+        nome: 'Roberto Corrêa de Mello Junior',
+        creci: '319413',
+        role: 'superadmin'
+      }
+    });
+
+  } catch (err) {
+    console.error('Erro no login Super Admin:', err);
+    return res.status(500).json({ error: 'Erro ao autenticar Super Admin.' });
+  }
+});
 
     // Consulta no banco de dados para outros corretores
     try {

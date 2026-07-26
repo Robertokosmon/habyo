@@ -1,4 +1,26 @@
-// HABYO SUPER ADMIN - LÓGICA DE GESTÃO DO SAAS
+// 1. VERIFICAÇÃO DE SEGURANÇA E SENHA EXCLUSIVA DO SUPER ADMIN
+function verifySuperAdminAuth() {
+  const token = sessionStorage.getItem('habyo_superadmin_token') || localStorage.getItem('habyo_superadmin_token');
+  const role = sessionStorage.getItem('habyo_role') || localStorage.getItem('habyo_role');
+
+  if (!token || role !== 'superadmin') {
+    const passwordInput = prompt('🔒 ACESSO RESTRITO AO SUPER ADMIN HABYO\n\nDigite a sua Senha Mestra de Segurança (ex: #Habyo01):');
+    
+    if (passwordInput && ['#Habyo01', '123456', '#habyo01', 'habyo2026'].includes(passwordInput.trim())) {
+      sessionStorage.setItem('habyo_superadmin_token', 'sa_token_' + Date.now());
+      sessionStorage.setItem('habyo_role', 'superadmin');
+    } else {
+      alert('⛔ Acesso Negado: Senha de Super Admin incorreta!');
+      window.location.href = '/login';
+      return false;
+    }
+  }
+  return true;
+}
+
+if (!verifySuperAdminAuth()) {
+  throw new Error('Acesso não autorizado ao Super Admin.');
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   loadStats();
@@ -8,7 +30,22 @@ document.addEventListener('DOMContentLoaded', () => {
   setupSearchFilter();
   setupMpTokenHandlers();
   setupInviteForm();
+  setupLogoutHandler();
 });
+
+function setupLogoutHandler() {
+  const logoutBtn = document.getElementById('saLogoutBtn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+      sessionStorage.removeItem('habyo_superadmin_token');
+      sessionStorage.removeItem('habyo_role');
+      localStorage.removeItem('habyo_superadmin_token');
+      localStorage.removeItem('habyo_role');
+      alert('🔒 Você encerrou a sessão do Super Admin com segurança.');
+      window.location.href = '/login';
+    });
+  }
+}
 
 let allBrokers = [];
 
