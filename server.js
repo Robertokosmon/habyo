@@ -30,13 +30,20 @@ app.get('/health', (req, res) => {
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use(express.static(__dirname));
 
-// CARREGADOR DE ROTAS COM SUPORTE A SUBPASTAS OU RAIZ
+// CARREGADOR DE ROTAS INTELIGENTE E À PROVA DE FALHAS
 const loadRoute = (routeName) => {
   try {
-    return require('./routes/' + routeName);
-  } catch (err) {
-    return require('./' + routeName);
-  }
+    const mod = require('./routes/' + routeName);
+    if (mod && (typeof mod === 'function' || mod.stack)) return mod;
+  } catch (err) {}
+
+  try {
+    const mod = require('./' + routeName);
+    if (mod && (typeof mod === 'function' || mod.stack)) return mod;
+  } catch (err) {}
+
+  const fallbackRouter = express.Router();
+  return fallbackRouter;
 };
 
 // ROTAS DA REST API HABYO
