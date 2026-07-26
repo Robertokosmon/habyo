@@ -31,18 +31,21 @@ body.register-body {
   background-color: var(--bg-dark);
   color: var(--text-main);
   min-height: 100vh;
+  height: 100vh;
   margin: 0;
   padding: 0;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 /* SPLIT SCREEN GRID LAYOUT */
 .split-register-layout {
   display: grid;
   grid-template-columns: 52% 48%;
-  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
   width: 100%;
+  overflow: hidden;
 }
 
 /* LEFT COLUMN: LUXURY PROPERTY SLIDER SHOWCASE */
@@ -180,14 +183,22 @@ body.register-body {
 
 /* RIGHT COLUMN: COMPACT CENTERED WIZARD CONTENT */
 .register-right-content {
-  padding: 30px 24px;
+  padding: 16px 24px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   background: 
     radial-gradient(circle at top right, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
     var(--bg-dark);
+}
+
+.register-right-content::-webkit-scrollbar {
+  display: none;
 }
 
 .register-header {
