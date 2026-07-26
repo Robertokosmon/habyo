@@ -1,0 +1,612 @@
+/* ============================================================ */
+/* HABYO HOMEPAGE (LANDING PAGE INSTITUCIONAL DE ADESÃO) STYLES */
+/* ============================================================ */
+
+body.home-body {
+  background-color: #070A11;
+  color: #F8FAFC;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.home-container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ===================================== */
+/* 1. HEADER                             */
+/* ===================================== */
+.home-header {
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand-logo {
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  color: #FFF;
+  text-decoration: none;
+}
+
+.brand-slogan {
+  font-size: 0.76rem;
+  color: #94A3B8;
+  line-height: 1.25;
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  padding-left: 14px;
+}
+
+.btn-entrar-nav {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFF;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-entrar-nav:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* ===================================== */
+/* 2. HERO SECTION GRID                  */
+/* ===================================== */
+.home-main {
+  padding: 40px 0 60px 0;
+}
+
+.home-hero-grid {
+  display: grid;
+  grid-template-columns: 46% 51%;
+  gap: 3%;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+/* LEFT COLUMN */
+.badge-growth-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(30, 58, 138, 0.4);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  color: #93C5FD;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.home-hero-title {
+  font-size: 2.6rem;
+  font-weight: 900;
+  line-height: 1.15;
+  color: #FFF;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.02em;
+}
+
+.text-blue-gradient {
+  background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.home-hero-sub {
+  font-size: 1.05rem;
+  color: #94A3B8;
+  line-height: 1.5;
+  margin: 0 0 28px 0;
+}
+
+.home-cta-wrap {
+  margin-bottom: 30px;
+}
+
+.btn-cadastrar-green {
+  background: #10B981;
+  color: #FFF;
+  font-size: 1.05rem;
+  font-weight: 800;
+  padding: 16px 28px;
+  border-radius: 10px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btn-cadastrar-green:hover {
+  background: #059669;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(16, 185, 129, 0.45);
+}
+
+.home-benefits-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.b-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.b-icon {
+  font-size: 1.3rem;
+}
+
+.b-item strong {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #FFF;
+}
+
+.b-item span {
+  font-size: 0.74rem;
+  color: #64748B;
+}
+
+/* RIGHT COLUMN: BROKER MOCKUP CARD */
+.broker-preview-card {
+  background: #0B1120;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(37, 99, 235, 0.12);
+}
+
+.bp-top-grid {
+  display: grid;
+  grid-template-columns: 34% 63%;
+  gap: 3%;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 20px;
+}
+
+.bp-profile-side {
+  text-align: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  padding-right: 12px;
+}
+
+.bp-avatar-wrap {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 10px auto;
+}
+
+.bp-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #3B82F6;
+}
+
+.bp-check-badge {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  background: #10B981;
+  color: #FFF;
+  font-size: 0.65rem;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  border: 2px solid #0B1120;
+}
+
+.bp-broker-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #FFF;
+  margin: 0 0 2px 0;
+}
+
+.bp-broker-role {
+  font-size: 0.72rem;
+  color: #94A3B8;
+  margin: 0 0 6px 0;
+  line-height: 1.25;
+}
+
+.bp-broker-creci {
+  font-size: 0.72rem;
+  color: #64748B;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.bp-broker-loc {
+  font-size: 0.74rem;
+  color: #94A3B8;
+}
+
+/* SOBRE MIM SIDE */
+.bp-section-subhead {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #FFF;
+  margin: 0 0 6px 0;
+}
+
+.bp-about-text {
+  font-size: 0.76rem;
+  color: #94A3B8;
+  line-height: 1.35;
+  margin: 0 0 12px 0;
+}
+
+.bp-tags-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.bp-tag-pill {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #CBD5E1;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.bp-tag-pill .t-ico {
+  font-size: 0.75rem;
+}
+
+/* PROPERTY GRID INSIDE MOCKUP */
+.bp-prop-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.bp-prop-header h4 {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #FFF;
+  margin: 0;
+}
+
+.bp-link-all {
+  font-size: 0.78rem;
+  color: #3B82F6;
+  font-weight: 600;
+  cursor: default;
+  user-select: none;
+}
+
+.bp-prop-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.bp-prop-card {
+  background: #1E293B;
+  border-radius: 8px;
+  overflow: hidden;
+  display: block;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  cursor: default;
+  user-select: none;
+}
+
+.bp-thumb-wrap {
+  position: relative;
+  height: 90px;
+  overflow: hidden;
+}
+
+.bp-thumb-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.bp-count-badge {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #FFF;
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.bp-card-info {
+  padding: 8px;
+}
+
+.bp-card-title {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #FFF;
+  margin: 0 0 2px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bp-card-addr {
+  font-size: 0.64rem;
+  color: #94A3B8;
+  margin: 0 0 4px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bp-card-price {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #FFF;
+}
+
+.bp-add-prop-card {
+  background: transparent;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  color: #94A3B8;
+  cursor: default;
+  user-select: none;
+}
+
+.bp-add-prop-card:hover {
+  border-color: #3B82F6;
+  color: #FFF;
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.bp-add-circle {
+  font-size: 1.4rem;
+  font-weight: 300;
+  margin-bottom: 4px;
+}
+
+.bp-add-prop-card span {
+  font-size: 0.68rem;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* ===================================== */
+/* 3. 5-COLUMNS FEATURES STRIP           */
+/* ===================================== */
+.home-features-card {
+  background: #0B1120;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 30px 24px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.f-col-item {
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  padding-right: 16px;
+}
+
+.f-col-item:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+.f-icon-box {
+  width: 44px;
+  height: 44px;
+  background: rgba(30, 58, 138, 0.3);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #3B82F6;
+  font-size: 1.2rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.f-col-item h3 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #FFF;
+  margin: 0 0 6px 0;
+}
+
+.f-col-item p {
+  font-size: 0.78rem;
+  color: #94A3B8;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ===================================== */
+/* 4. ROCKET CTA BANNER                  */
+/* ===================================== */
+.home-rocket-cta-banner {
+  background: linear-gradient(135deg, #0B132B 0%, #1C2541 100%);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 16px;
+  padding: 32px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 50px;
+}
+
+.rocket-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.rocket-icon-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #1E293B;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rocket-left h2 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #FFF;
+  margin: 0 0 4px 0;
+}
+
+.rocket-left p {
+  font-size: 0.88rem;
+  color: #94A3B8;
+  margin: 0;
+}
+
+.rocket-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.rocket-subnote {
+  font-size: 0.74rem;
+  color: #64748B;
+}
+
+/* ===================================== */
+/* 5. FOOTER                             */
+/* ===================================== */
+.home-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 30px 0;
+}
+
+.footer-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.footer-logo {
+  font-size: 1.3rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: #FFF;
+}
+
+.footer-tagline {
+  font-size: 0.75rem;
+  color: #64748B;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  padding-left: 12px;
+}
+
+.footer-pillars-grid {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.fp-item {
+  font-size: 0.8rem;
+  color: #94A3B8;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fp-icon {
+  font-size: 0.9rem;
+}
+
+/* RESPONSIVIDADE PARA DISPOSITIVOS MÓVEIS */
+@media (max-width: 992px) {
+  .home-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .home-features-card {
+    grid-template-columns: 1fr 1fr;
+  }
+  .f-col-item {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding-bottom: 16px;
+  }
+  .home-rocket-cta-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .rocket-right {
+    align-items: flex-start;
+  }
+}

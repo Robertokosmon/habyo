@@ -1,0 +1,620 @@
+/* HABYO - Split-Screen Compact Centered Registration with Real Email Verification */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap');
+
+:root {
+  --bg-dark: #04060A;
+  --bg-card: rgba(15, 19, 28, 0.94);
+  --primary-blue: #2563EB;
+  --primary-blue-hover: #1D4ED8;
+  --accent-gold: #F59E0B;
+  --accent-green: #10B981;
+  
+  --text-main: #F8FAFC;
+  --text-muted: #94A3B8;
+  --text-sub: #64748B;
+  
+  --border-glass: rgba(255, 255, 255, 0.12);
+  --border-blue: rgba(37, 99, 235, 0.35);
+  
+  --radius-lg: 16px;
+  --radius-md: 10px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body.register-body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+/* SPLIT SCREEN GRID LAYOUT */
+.split-register-layout {
+  display: grid;
+  grid-template-columns: 52% 48%;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* LEFT COLUMN: LUXURY PROPERTY SLIDER SHOWCASE */
+.register-left-showcase {
+  position: relative;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+.showcase-slider-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.showcase-slide-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  z-index: 1;
+}
+
+.showcase-slide-img.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+/* GRADIENT SHADOW OVERLAY */
+.showcase-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, rgba(4, 6, 10, 0.85) 0%, rgba(4, 6, 10, 0.2) 40%, rgba(4, 6, 10, 0.95) 100%),
+    linear-gradient(90deg, transparent 60%, rgba(4, 6, 10, 0.9) 100%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* TOP LEFT BRANDING IN SLIDER */
+.showcase-branding-box {
+  position: absolute;
+  top: 36px;
+  left: 36px;
+  z-index: 4;
+}
+
+.showcase-logo {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #FFF;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+.showcase-slogan {
+  font-size: 0.78rem;
+  color: #93C5FD;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* FLOATING CARD AT BOTTOM OF SLIDER */
+.showcase-floating-card {
+  position: absolute;
+  bottom: 40px;
+  left: 36px;
+  right: 36px;
+  background: rgba(15, 19, 28, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  z-index: 4;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+}
+
+.s-card-badge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #FCD34D;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.s-card-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #FFF;
+  line-height: 1.3;
+}
+
+.s-card-stats {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.s-card-stats span {
+  color: #60A5FA;
+  font-weight: 700;
+}
+
+/* SLIDE DOTS BAR */
+.showcase-dots-bar {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.s-dot {
+  width: 20px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.s-dot.active {
+  background: var(--primary-blue);
+  width: 32px;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.8);
+}
+
+/* RIGHT COLUMN: COMPACT CENTERED WIZARD CONTENT */
+.register-right-content {
+  padding: 30px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: 
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+    var(--bg-dark);
+}
+
+.register-header {
+  text-align: center;
+  margin-bottom: 16px;
+  max-width: 480px;
+}
+
+.brand-tag-mini {
+  display: inline-block;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #FCD34D;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 6px;
+}
+
+.register-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #FFF;
+  letter-spacing: -0.02em;
+}
+
+.register-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+/* WIZARD BOX - CENTRALIZADO E COMPACTO */
+.wizard-box {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.wizard-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #2563EB 0%, #F59E0B 50%, #10B981 100%);
+  border-radius: 16px 16px 0 0;
+}
+
+/* WIZARD STEPS NAV INDICATOR */
+.wizard-steps-nav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.step-nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 6px 8px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.step-nav-item.active {
+  background: rgba(37, 99, 235, 0.15);
+  border-color: var(--primary-blue);
+}
+
+.step-nav-item.completed {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.step-num {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #171E2C;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-muted);
+  font-weight: 800;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.step-nav-item.active .step-num {
+  background: var(--primary-blue);
+  border-color: #60A5FA;
+  color: #FFF;
+}
+
+.step-nav-item.completed .step-num {
+  background: #10B981;
+  border-color: #34D399;
+  color: #FFF;
+}
+
+.step-lbl {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+
+.step-nav-item.active .step-lbl { color: #60A5FA; }
+.step-nav-item.completed .step-lbl { color: #34D399; }
+
+/* STEP PANELS */
+.wizard-step-panel {
+  display: none;
+  animation: fadeInPanel 0.25s ease-out;
+}
+
+.wizard-step-panel.active {
+  display: block;
+}
+
+@keyframes fadeInPanel {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reg-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.reg-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.reg-input {
+  background: #121824;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #FFF;
+  font-family: inherit;
+  font-size: 0.86rem;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.reg-input:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.35);
+  background: #1A2234;
+}
+
+/* PASSWORD INPUT WRAPPER WITH EYE TOGGLE */
+.input-password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.toggle-password-btn {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--text-muted);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.toggle-password-btn:hover {
+  transform: scale(1.1);
+}
+
+/* DISCRETE PASSWORD RULES VALIDATION BOX */
+.password-rules-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin-top: 4px;
+  margin-bottom: 10px;
+  padding: 0 2px;
+}
+
+.rule-item {
+  font-size: 0.7rem;
+  color: #64748B;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.rule-item.valid {
+  color: #10B981;
+  font-weight: 600;
+}
+
+.rule-item.invalid {
+  color: #64748B;
+  opacity: 0.7;
+}
+
+.rule-icon {
+  font-size: 0.65rem;
+}
+
+/* LIVE CRECI URL PREVIEW BADGE */
+.live-url-preview-badge {
+  background: rgba(37, 99, 235, 0.15);
+  border: 1px solid var(--border-blue);
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  font-size: 0.78rem;
+  color: #60A5FA;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.live-url-preview-badge strong {
+  color: #FFF;
+}
+
+/* PODER TOTAL PERKS GRID */
+.founder-card-option {
+  background: linear-gradient(135deg, rgba(30, 27, 75, 0.8) 0%, rgba(49, 46, 129, 0.8) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  padding: 12px;
+  border-radius: var(--radius-md);
+  margin-bottom: 14px;
+}
+
+.f-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #FBBF24;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+
+.f-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #FFF;
+}
+
+.founder-perks-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.perk-box {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  padding: 6px 8px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: #FCD34D;
+  font-weight: 700;
+}
+
+/* BUTTONS */
+.step-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btn-step-prev {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FFF;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.btn-step-next {
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  color: #FFF;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 800;
+  padding: 11px 18px;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  flex: 1;
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+  transition: all 0.2s ease;
+}
+
+.btn-step-next:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.6);
+}
+
+/* REAL EMAIL ACTIVATION BUTTONS */
+.email-waiting-box { text-align: center; }
+.mail-icon-pulse { font-size: 2.5rem; margin-bottom: 10px; animation: pulseMail 2s infinite ease-in-out; }
+.email-waiting-box h3 { font-size: 1.25rem; font-weight: 800; color: #FFF; margin-bottom: 6px; }
+.email-waiting-box p { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5; }
+
+.email-action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.btn-open-real-gmail {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: #FFF;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 800;
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.35);
+  transition: all 0.25s ease;
+}
+
+.btn-open-real-gmail:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.5);
+}
+
+.btn-direct-activation-link {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #60A5FA;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+
+.btn-direct-activation-link:hover {
+  background: rgba(37, 99, 235, 0.15);
+  border-color: var(--primary-blue);
+  color: #FFF;
+}
+
+.resend-link-row {
+  font-size: 0.78rem;
+  color: var(--text-sub);
+}
+
+.resend-link-row a {
+  color: #60A5FA;
+  font-weight: 700;
+}
+
+/* RESPONSIVE TABLET AND MOBILE */
+@media (max-width: 1024px) {
+  .split-register-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .register-left-showcase {
+    height: 240px;
+    position: relative;
+  }
+
+  .showcase-floating-card {
+    bottom: 14px;
+    left: 14px;
+    right: 14px;
+    padding: 12px;
+  }
+
+  .s-card-title {
+    font-size: 0.9rem;
+  }
+
+  .register-right-content {
+    padding: 20px 14px;
+  }
+
+  .wizard-box {
+    max-width: 100%;
+  }
+
+  .password-rules-box {
+    grid-template-columns: 1fr;
+  }
+}
