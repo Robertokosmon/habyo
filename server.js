@@ -26,8 +26,9 @@ app.get('/health', (req, res) => {
   });
 });
 
-// SERVIR ARQUIVOS ESTÁTICOS COM SUPORTE A ROTAS ABSOLUTAS
+// SERVIR ARQUIVOS ESTÁTICOS COM SUPORTE A ROTAS ABSOLUTAS E FALLBACK DA RAIZ
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.use('/assets', express.static(__dirname));
 app.use(express.static(__dirname));
 
 // CARREGADOR DE ROTAS INTELIGENTE E À PROVA DE FALHAS
